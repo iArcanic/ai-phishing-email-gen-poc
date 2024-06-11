@@ -1,0 +1,7 @@
+version: "3.8"
+
+services:
+  ai-phishing-email-gen:
+    build: .
+    volumes:
+      - ./data:/app/data
