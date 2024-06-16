@@ -19,7 +19,7 @@ if __name__ == "__main__":
     
     # Split the data
     print("Splitting datasets...")
-    X_train, X_test, y_train, y_test = split_data(data)
+    X_train, X_test, Y_train, Y_test = split_data(data)
 
     # Train the generative model
-    train_gpt2_model(X_train)
+    train_gpt2_model(X_train, X_test)
