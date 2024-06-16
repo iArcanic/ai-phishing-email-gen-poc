@@ -1,5 +1,8 @@
-# Lightweight Python image as the base image
-FROM python:3.9-slim
+# Python image as the base image
+FROM python:3.9
+
+# Set the Hugging Face cache directory
+ENV HF_HOME=/mnt/data/.cache/huggingface
 
 # Copy Python files
 COPY src/ /app/
