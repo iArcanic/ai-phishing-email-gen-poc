@@ -82,3 +82,10 @@ def train_gpt2_model(train_data, eval_data):
     print("Training the GPT2 model...")
     trainer.train()
     print("Training completed successfully.")
+
+    # Safe the final model and tokenizer
+    print("Saving the final model and tokenizer...")
+    trainer.save_model("gpt2-model-final")
+    tokenizer.save_pretrained("gpt2-model-final")
+    print("Model and tokenizer saved successfully.")
+
