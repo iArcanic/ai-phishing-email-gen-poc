@@ -168,3 +168,8 @@ please verify your account and regain full access to your å£350 weekly sae. ca
 ```bash
 docker-compose down
 ```
+
+## 4 Acknowledgements
+
+- Datasets in the [`data`](https://github.com/iArcanic/ai-phishing-email-gen-poc/tree/main/data) folder are taken from [TanusreeSharma/phishingdata-Analysis](https://github.com/TanusreeSharma/phishingdata-Analysis).
+- GPT-2 model from [Hugging Face](https://huggingface.co/openai-community/gpt2).
