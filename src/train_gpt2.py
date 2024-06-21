@@ -30,10 +30,13 @@ def train_gpt2_model(train_data, eval_data):
     # Only the 'cleaned_message' column is required
     train_data = Dataset.from_pandas(train_data[["cleaned_message"]])
     eval_data = Dataset.from_pandas(eval_data[["cleaned_message"]])
+    
+    # Check if GPU is available
+    device = "cuda" if torch.cuda.is_available() else "cpu"
 
     # Initialise the model
     print("Initialising GPT2 Model...")
-    model = GPT2LMHeadModel.from_pretrained("gpt2")
+    model = GPT2LMHeadModel.from_pretrained("gpt2").to(device)
     print("GPT2 model initialised.")
 
     # Tokenize the train dataset
@@ -58,7 +61,7 @@ def train_gpt2_model(train_data, eval_data):
         weight_decay=0.01,
         save_steps=10,
         save_total_limit=2,
-        fp16=False,
+        fp16=True if torch.cuda.is_available() else False,
         logging_dir="./logs",
         logging_steps=5,
         eval_steps=10, # Evaluate every 10 steps
@@ -83,7 +86,7 @@ def train_gpt2_model(train_data, eval_data):
     trainer.train()
     print("Training completed successfully.")
 
-    # Safe the final model and tokenizer
+    # Save the final model and tokenizer
     print("Saving the final model and tokenizer...")
     trainer.save_model("gpt2-model-final")
     tokenizer.save_pretrained("gpt2-model-final")
